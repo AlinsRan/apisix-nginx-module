@@ -31,7 +31,6 @@ jobs:
 
       - name: Install
         run: |
-          rm patch/1.21.4/ngx_lua-enable_keepalive.patch
           rm patch/1.21.4/ngx_lua-tlshandshake.patch
           wget https://raw.githubusercontent.com/api7/apisix-build-tools/master/build-apisix-base.sh
           chmod +x build-apisix-base.sh
