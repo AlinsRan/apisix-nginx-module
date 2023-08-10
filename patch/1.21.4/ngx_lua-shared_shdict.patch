@@ -3072,3 +3072,24 @@ index faea7a07..20d5410a 100644
                  /* an error happened */
                  return NULL;
              }
+diff --git src/ngx_http_lua_worker_thread.c src/ngx_http_lua_worker_thread.c
+index ed7b0892..255adba4 100644
+--- src/ngx_http_lua_worker_thread.c
++++ src/ngx_http_lua_worker_thread.c
+@@ -16,7 +16,6 @@
+ #include "ngx_http_lua_util.h"
+ #include "ngx_http_lua_string.h"
+ #include "ngx_http_lua_config.h"
+-#include "ngx_http_lua_shdict.h"
+ 
+ #ifndef STRINGIFY
+ #define TOSTRING(x)  #x
+@@ -154,7 +153,7 @@ ngx_http_lua_get_task_ctx(lua_State *L, ngx_http_request_t *r)
+         lua_newtable(vm);    /* ngx.* */
+         ngx_http_lua_inject_string_api(vm);
+         ngx_http_lua_inject_config_api(vm);
+-        ngx_http_lua_inject_shdict_api(lmcf, vm);
++        ngx_meta_lua_inject_shdict_api(L, ngx_cycle, &ngx_http_lua_module);
+         lua_setglobal(vm, "ngx");
+ 
+         /* inject API via ffi */
